@@ -1,0 +1,992 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Aditya Rastogi · Design + Tech Portfolio</title>
+<meta name="description" content="Aditya Rastogi, first-year B.Tech (Electronics and Computer Engineering) at Thapar Institute of Technology. Learning web development, C/C++ and design."><meta name="theme-color" content="#07080d">
+<meta property="og:type" content="website"><meta property="og:title" content="Aditya Rastogi · Portfolio"><meta property="og:description" content="First-year B.Tech (ENC) student at Thapar Institute of Technology,Patiala. Learning web development, C/C++ and design."><meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=VT323&display=swap">
+<style>
+
+  :root {
+  color-scheme: dark;
+  --bg: #07080d; --surface: #0e1118; --surface-2: #141925; --fg: #f2f4f8; --muted: #98a1b3;
+  --line: rgba(255, 255, 255, 0.09);
+  --blue: #4c8df6; --red: #ef5a4f; --yellow: #fbbc04; --green: #3fbf6a;
+  --on-accent: #07080d; --nav-bg: rgba(14, 17, 24, 0.7);
+  --placeholder-bg: #2b2410; --placeholder-fg: #f3d58a;
+  --code-bg: #090b10; --code-fg: #e8ecf4; --code-key: #8ab4f8; --code-str: #81c995; --code-num: #fdd663; --code-kw: #f28b82; --code-pun: #8791a7;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px; line-height: 1.6; padding-inline: 20px; padding-block: 0 48px; overflow-x: clip;
+}
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.page { --accent: var(--yellow); }
+.page[data-mode="tech"] { --accent: var(--blue); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
+.ph { background: var(--placeholder-bg); color: var(--placeholder-fg); border-radius: 6px; padding: 1px 7px; font-size: 0.92em; }
+.serif { font-family: "Instrument Serif", "Times New Roman", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+h2 .serif { font-size: 1.12em; }
+
+.progress { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none; transform-origin: left; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--blue), var(--red), var(--yellow), var(--green)); }
+.nav { background: var(--nav-bg); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.seg-on { background: var(--accent); color: var(--on-accent); }
+.hero::before { content: ""; position: absolute; inset: -60px -40px; pointer-events: none; background: radial-gradient(55% 55% at 78% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); }
+.outline-text { color: transparent; -webkit-text-stroke: 2px var(--fg); transition: color .4s; }
+h1:hover .outline-text { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+.lede .serif { font-size: 1.12em; color: var(--accent); }
+.pill i { box-shadow: 0 0 10px var(--green); }
+
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after { content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; transform: translateX(-120%); pointer-events: none; background: linear-gradient(110deg, transparent 35%, var(--accent) 50%, transparent 65%); }
+
+/* spotlight + tilt + border beam */
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.tile {
+  --x: 50%; --y: 0%;
+  position: relative; overflow: hidden; border-radius: 28px; padding: 30px; min-width: 0;
+  background: var(--surface); border: 1px solid var(--line); transition: border-color .3s;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.tile::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(420px circle at var(--x) var(--y), color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%); }
+.tile:hover::before { opacity: 1; }
+.tile > * { position: relative; z-index: 1; }
+.tile.next { border-style: dashed; background: transparent; justify-content: center; }
+.page[data-mode="design"] .t-design, .page[data-mode="tech"] .t-tech { border-color: var(--accent); }
+.t-design::after { content: ""; position: absolute; right: -36px; top: -36px; width: 140px; height: 140px; border-radius: 50%; background: var(--yellow); opacity: 0.9; }
+.t-tech::after { content: "</>"; position: absolute; right: 18px; top: 8px; font-family: "JetBrains Mono", monospace; font-size: 3.6rem; line-height: 1; color: var(--blue); opacity: 0.55; }
+.beam::after, .stage-wrap::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--a), transparent 0 72%, var(--accent) 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+}
+.statement u {
+  text-decoration: none; font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1em;
+  padding-inline: 0.1em; border-radius: 4px;
+  background-image: linear-gradient(color-mix(in srgb, var(--accent) 38%, transparent), color-mix(in srgb, var(--accent) 38%, transparent));
+  background-repeat: no-repeat; background-size: 100% 0.6em; background-position: 0 90%;
+}
+
+/* crt */
+.stage-wrap { position: relative; border-radius: 36px; }
+.stage::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.7; }
+.stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(300px circle at var(--x, 50%) var(--y, 40%), color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%); }
+.stage svg { z-index: 1; }
+.trace { fill: none; stroke: color-mix(in srgb, var(--c) 40%, transparent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: stroke .5s; }
+.pulse { fill: none; stroke: var(--c); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 7 93; stroke-dashoffset: 100; filter: drop-shadow(0 0 4px var(--c)); transition: stroke .5s; }
+.pad { fill: var(--surface); stroke: var(--c); stroke-width: 3; transition: stroke .5s; }
+.pin { stroke: var(--muted); stroke-width: 3; stroke-linecap: round; }
+.chip { fill: var(--surface-2); stroke: var(--fg); stroke-opacity: 0.35; stroke-width: 2; }
+.chip-inner { fill: none; stroke: var(--line); stroke-width: 2; }
+.chip-text { font: 800 62px "Bricolage Grotesque", sans-serif; fill: var(--fg); letter-spacing: -0.04em; }
+.chip-sub { font: 500 11px "JetBrains Mono", monospace; fill: var(--muted); letter-spacing: 0.12em; }
+.pin1 { fill: var(--accent); transition: fill .5s; }
+.hole circle { fill: var(--bg); stroke: var(--muted); stroke-width: 2.5; }
+.smd { fill: var(--surface-2); stroke: var(--muted); stroke-width: 2; }
+.silk { font: 500 9px "JetBrains Mono", monospace; fill: var(--muted); letter-spacing: 0.08em; }
+.net { font: 500 10px "JetBrains Mono", monospace; fill: var(--fg); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; opacity: 0; transition: opacity .5s; }
+.page[data-mode="tech"] .net { opacity: 0.9; }
+.page[data-mode="tech"] .trace { stroke: color-mix(in srgb, var(--blue) 40%, transparent); }
+.page[data-mode="tech"] .pulse { stroke: var(--blue); filter: drop-shadow(0 0 4px var(--blue)); }
+.page[data-mode="tech"] .pad { stroke: var(--blue); }
+.b-bg { fill: var(--fg); }
+.b-text { font: 500 8.4px "JetBrains Mono", monospace; fill: var(--bg); }
+.b-core { font: 800 25px "Bricolage Grotesque", sans-serif; fill: var(--bg); }
+
+html { scroll-behavior: smooth; }
+::selection { background: var(--accent); color: var(--on-accent); }
+.aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(640px circle at var(--mx, 72%) var(--my, 18%), color-mix(in srgb, var(--accent) 11%, transparent), transparent 70%); }
+.dots { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px); background-size: 26px 26px; -webkit-mask-image: radial-gradient(420px circle at var(--mx, 72%) var(--my, 18%), #000, transparent 75%); mask-image: radial-gradient(420px circle at var(--mx, 72%) var(--my, 18%), #000, transparent 75%); }
+.kbd { border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 1px 6px; font: 500 11px "JetBrains Mono", monospace; color: var(--fg); }
+.mag.mag { transition: translate .25s ease-out, transform .2s; }
+.term-chip { border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font: 500 12px "JetBrains Mono", monospace; color: var(--muted); transition: color .2s, border-color .2s; }
+.term-chip:hover { color: var(--fg); border-color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .pop { animation: pop .4s cubic-bezier(.3,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 55ms); }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+}
+.ring { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 65; opacity: .75; transition: width .2s, height .2s, margin .2s, background-color .2s; }
+.ring.big { width: 58px; height: 58px; margin: -29px 0 0 -29px; background: color-mix(in srgb, var(--accent) 14%, transparent); }
+@media (hover: none) { .ring { display: none; } }
+.crt-bezel { --phos: #ffbf47; position: relative; padding: 14px; border-radius: 30px; background: linear-gradient(150deg, #30333f, #12141b 60%); box-shadow: inset 0 1px 1px rgba(255,255,255,.18), 0 40px 70px -30px rgba(0,0,0,.9), 0 0 90px -25px color-mix(in srgb, var(--phos) 45%, transparent); }
+.page[data-mode="tech"] .crt-bezel { --phos: #4dff9d; }
+.crt { position: relative; overflow: hidden; border-radius: 22px / 26px; font: 400 20px/1.3 "VT323", "JetBrains Mono", monospace; color: var(--phos); background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--phos) 11%, #050806), #020403 85%); box-shadow: inset 0 0 90px rgba(0,0,0,.95), inset 0 0 10px color-mix(in srgb, var(--phos) 35%, transparent); }
+.crt .text-fg { color: var(--phos); }
+.crt .text-muted { color: color-mix(in srgb, var(--phos) 68%, transparent); }
+.crt .text-accent { color: #fff; text-shadow: 0 0 8px var(--phos); }
+.crt-bar { display: flex; align-items: center; justify-content: space-between; padding: 9px 18px; font-size: 16px; letter-spacing: .16em; color: color-mix(in srgb, var(--phos) 70%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--phos) 22%, transparent); }
+.crt-bar .led { width: 8px; height: 8px; border-radius: 50%; background: var(--phos); box-shadow: 0 0 10px var(--phos); }
+.crt-body { text-shadow: 0 0 7px color-mix(in srgb, var(--phos) 75%, transparent); scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--phos) 40%, transparent) transparent; }
+.crt-body input { font: inherit; color: var(--phos); }
+.crt .term-chip { font: 400 17px "VT323", monospace; color: var(--phos); border-color: color-mix(in srgb, var(--phos) 40%, transparent); }
+.crt .term-chip:hover { background: color-mix(in srgb, var(--phos) 16%, transparent); border-color: var(--phos); }
+.crt-fx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; background: repeating-linear-gradient(0deg, rgba(0,0,0,.3) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.6) 100%); }
+.crt-fx::after { content: ""; position: absolute; left: 0; right: 0; top: -30%; height: 28%; background: linear-gradient(transparent, color-mix(in srgb, var(--phos) 10%, transparent), transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .crt-fx::after { animation: sweep 6s linear infinite; }
+  @keyframes sweep { to { transform: translateY(480%); } }
+  .crt-body { animation: flick 4s infinite; }
+  @keyframes flick { 0%, 100% { opacity: 1; } 50% { opacity: .97; } 52% { opacity: .88; } 54% { opacity: .98; } }
+  .crt { animation: crton .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes crton { 0% { transform: scale(.6, .01); filter: brightness(5); } 55% { transform: scale(1, .01); filter: brightness(3); } 100% { transform: none; filter: none; } }
+}
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .55s; }
+html[data-mode="tech"] body { background: #030706; }
+.page[data-mode="tech"] { --accent: #3dffa0; --surface: #08110f; --surface-2: #0d1b17; --line: rgba(61,255,160,.17); }
+.page[data-mode="tech"] .tile, .page[data-mode="tech"] .contact-tile { border-radius: 8px; }
+.page[data-mode="tech"] h1, .page[data-mode="tech"] h2, .page[data-mode="tech"] h3, .page[data-mode="tech"] .mq-word, .page[data-mode="tech"] .statement { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: -0.045em; }
+.page[data-mode="tech"] h1 { font-size: clamp(2.6rem, 11vw, 6.2rem); }
+.page[data-mode="tech"] .serif, .page[data-mode="tech"] .statement u, .page[data-mode="tech"] .lede .serif { font-family: "JetBrains Mono", ui-monospace, monospace; font-style: normal; font-size: 1em; }
+.page[data-mode="tech"] .dots { background-image: linear-gradient(rgba(61,255,160,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(61,255,160,.16) 1px, transparent 1px); background-size: 44px 44px; }
+.fly { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3px; border-radius: 50%; background: var(--red); pointer-events: none; animation: fly .6s ease-out forwards; }
+@keyframes fly { to { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }
+.rip { position: absolute; width: 20px; height: 20px; margin: -10px; border-radius: 50%; background: rgba(7,8,13,.28); pointer-events: none; animation: rip .65s ease-out forwards; }
+@keyframes rip { to { transform: scale(12); opacity: 0; } }
+.skel { background: linear-gradient(90deg, var(--surface) 25%, rgba(255,255,255,.14) 50%, var(--surface) 75%); background-size: 200% 100%; border-radius: 8px; }
+@media (prefers-reduced-motion: no-preference) { .skel { animation: skel 1.2s linear infinite; } @keyframes skel { to { background-position: -200% 0; } } }
+@media (prefers-reduced-motion: no-preference) { .live { animation: livepulse 2s ease-in-out infinite; } @keyframes livepulse { 50% { opacity: .3; } } }
+html.has-cur, html.has-cur * { cursor: none !important; }
+.cur, .cur-dot { position: fixed; left: 0; top: 0; pointer-events: none; opacity: 0; transition: opacity .25s; z-index: 65; }
+.cur.on, .cur-dot.on { opacity: 1; }
+.cur-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff; mix-blend-mode: difference; z-index: 66; }
+.cur-c { position: absolute; left: 0; top: 0; width: 38px; height: 38px; transform: translate(-50%, -50%); border: 1.5px solid var(--accent); border-radius: 50%; transition: width .28s cubic-bezier(.3,.7,.2,1), height .28s cubic-bezier(.3,.7,.2,1), border-radius .28s, background-color .28s, transform .2s; }
+.cur-l { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); font: 600 11px "JetBrains Mono", monospace; color: var(--on-accent); opacity: 0; transition: opacity .2s; white-space: nowrap; }
+.cur.is-link .cur-c { width: 74px; height: 74px; background: var(--accent); }
+.cur.is-link .cur-l { opacity: 1; }
+.cur.is-btn .cur-c { width: 60px; height: 60px; background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.cur.is-text .cur-c { width: 2px; height: 28px; border-radius: 2px; background: var(--accent); }
+.cur.is-crt .cur-c { width: 11px; height: 21px; border-radius: 2px; border-color: #ffbf47; background: #ffbf47; box-shadow: 0 0 14px #ffbf47; animation: blinkblk 1s steps(1) infinite; }
+.page[data-mode="tech"] .cur.is-crt .cur-c { border-color: #4dff9d; background: #4dff9d; box-shadow: 0 0 14px #4dff9d; }
+@keyframes blinkblk { 50% { opacity: .25; } }
+.cur.down .cur-c { transform: translate(-50%, -50%) scale(.8); }
+.cur-pop { position: fixed; width: 12px; height: 12px; margin: -6px 0 0 -6px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 64; animation: curpop .55s ease-out forwards; }
+@keyframes curpop { to { transform: scale(6); opacity: 0; } }
+.tvfx { position: fixed; inset: 0; z-index: 90; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, rgba(255,255,255,.9), rgba(160,255,210,.35) 70%); animation: tvflash .65s ease-out forwards; }
+@keyframes tvflash { 0% { opacity: 0; transform: scaleY(.02); } 20% { opacity: 1; transform: scaleY(.02); } 45% { opacity: .9; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(1); } }
+.crt-fx::before { content: ""; position: absolute; inset: 0; background: linear-gradient(125deg, rgba(255,255,255,.09), transparent 36%); }
+.marquee.led { --led: #ffbf47; position: relative; border-radius: 16px; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, #0b0a07, #050505); box-shadow: inset 0 0 40px rgba(0,0,0,.9), 0 0 60px -28px var(--led); }
+.page[data-mode="tech"] .marquee.led { --led: #4dff9d; }
+.marquee.led::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px); }
+.marquee.led .mq-word, .marquee.led .mq-word.o { font: 400 clamp(2rem, 5vw, 3rem) / 1 "VT323", monospace; letter-spacing: .08em; color: var(--led); -webkit-text-stroke: 0; text-shadow: 0 0 10px var(--led); }
+.marquee.led b { background: var(--led) !important; border-radius: 2px; box-shadow: 0 0 10px var(--led); }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 49; background: repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 4px); }
+@media (prefers-reduced-motion: no-preference) {
+  .sec-label::after { animation: blinkblk 1s steps(1) infinite; }
+  .dec { clip-path: inset(-10% 100% -10% -5%); }
+  .dec.dec-on { animation: decode .9s steps(26) forwards; }
+  @keyframes decode { to { clip-path: inset(-10% -5% -10% -5%); } }
+}
+.sec-label::after { content: ""; width: .55em; height: 1em; margin-left: 2px; background: var(--accent); }
+.keycap { box-shadow: 0 4px 0 rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.45); transition: transform .12s, box-shadow .12s; }
+.pop:hover .keycap { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.45); }
+.foot { font: 400 17px/1.4 "VT323", monospace; letter-spacing: .05em; border-top: 1px solid var(--line); padding-top: 18px; }
+.ascii { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 17px; line-height: 1.05; white-space: pre; text-shadow: 0 0 10px var(--phos); }
+.crt-body textarea { width: 100%; resize: none; font: inherit; color: var(--phos); background: transparent; outline: none; }
+.crt-body ::placeholder { color: color-mix(in srgb, var(--phos) 45%, transparent); }
+.crt .term-chip.sel { background: var(--phos); color: #050805; border-color: var(--phos); }
+.crt a.term-chip { text-decoration: none; }
+.page { --accent: #ffbf47; --on-accent: #07080d; --blue: var(--accent); --red: var(--accent); --yellow: var(--accent); --green: var(--accent); }
+.page[data-mode="tech"] { --accent: #4dff9d; }
+.page .serif, .page .lede .serif, .page h2 .serif { font-family: inherit; font-style: normal; font-size: 1em; color: var(--accent); text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent); }
+.page .statement u { font-family: inherit; font-style: normal; font-size: 1em; }
+.page .tile, .page .contact-tile { border-radius: 20px; }
+.contact-tile { background: var(--surface); color: var(--fg); border-color: var(--line); padding: clamp(24px, 5vw, 56px); }
+.contact-tile::before { display: block; }
+.contact-tile .row { border-bottom: 1px solid var(--line); }
+.page .ph, .contact-tile .ph { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.hero .shimmer { background: var(--accent); border-color: var(--accent); color: var(--on-accent); box-shadow: 0 0 28px -8px var(--accent); }
+.hero .shimmer::after { mix-blend-mode: normal; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.6) 50%, transparent 65%); }
+.hero a.mag:not(.shimmer) { border-color: var(--accent); color: var(--accent); }
+.idcard { position: relative; overflow: hidden; border-radius: 16px; padding: 16px 18px 18px; background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 13%, #0b0d12), #080a0e); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: 0 0 44px -20px var(--accent); }
+.idcard::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; background: radial-gradient(240px circle at var(--x, 50%) var(--y, 0%), rgba(255,255,255,.28), transparent 60%), linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--accent) 24%, transparent) 46%, transparent 62%); }
+.id-slot { width: 46px; height: 8px; margin: 0 auto 10px; border-radius: 6px; background: #000; box-shadow: inset 0 1px 2px rgba(255,255,255,.25); }
+.id-top { text-align: center; font: 400 16px "VT323", monospace; letter-spacing: .14em; color: var(--accent); }
+.id-photo { display: grid; place-items: center; width: 76px; height: 76px; margin: 12px auto; border-radius: 14px; background: #050806; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); box-shadow: inset 0 0 18px rgba(0,0,0,.9), 0 0 16px -4px var(--accent); font: 400 40px "VT323", monospace; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+.id-name { text-align: center; font: 800 1.5rem/1.1 "Bricolage Grotesque", sans-serif; letter-spacing: -.02em; }
+.id-line { text-align: center; font: 400 17px/1.25 "VT323", monospace; letter-spacing: .04em; color: var(--muted); }
+.id-bars { height: 26px; margin-top: 14px; border-radius: 3px; opacity: .7; background: repeating-linear-gradient(90deg, var(--fg) 0 2px, transparent 2px 4px, var(--fg) 4px 5px, transparent 5px 9px); }
+.page, .page[data-mode="tech"] { --line: color-mix(in srgb, var(--accent) 22%, rgba(255,255,255,.04)); }
+.frame { position: fixed; inset: 8px; z-index: 48; pointer-events: none; border: 1px solid var(--line); border-radius: 18px; }
+.frame::before, .frame::after { content: ""; position: absolute; width: 20px; height: 20px; border: 2px solid var(--accent); }
+.frame::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 18px; }
+.frame::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 18px; }
+.page .sec-label { padding-bottom: 12px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.marquee.led { border-color: var(--line); }
+body { padding-inline: clamp(24px, 4.5vw, 72px); }
+.page .max-w-wrap { max-width: 1680px; }
+.hero h1 span { text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 30%, transparent); }
+.hero h1 .outline-text { -webkit-text-stroke: 2px var(--accent); text-shadow: 0 0 24px color-mix(in srgb, var(--accent) 45%, transparent); }
+.hero h1 .outline-text::after { content: ""; display: inline-block; width: .32em; height: .72em; margin-left: .1em; background: var(--accent); box-shadow: 0 0 18px var(--accent); vertical-align: -.02em; }
+@media (prefers-reduced-motion: no-preference) { .hero h1 .outline-text::after { animation: blinkblk 1s steps(1) infinite; } }
+[id] { scroll-margin-top: 84px; }
+html { -webkit-text-size-adjust: 100%; }
+* { -webkit-tap-highlight-color: transparent; }
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(2.6rem, 15.5vw, 4.4rem); }
+  .crt { font-size: 18px; }
+  .hero .crt .crt-body { height: 300px; }
+  .id-name { font-size: 1.3rem; }
+}
+@media (max-width: 640px) {
+  body::after, .dots, .aurora { display: none; }
+  .frame { inset: 5px; border-radius: 14px; }
+  .page .sec-label { margin-bottom: 18px; }
+}
+@media (hover: none) {
+  .term-chip { padding: 8px 14px; }
+  nav button { min-height: 40px; }
+}
+@media print {
+  .frame, .aurora, .dots, .progress, nav, .crt-bezel, .marquee, .ring, .cur, .cur-dot { display: none !important; }
+  body::before, body::after { display: none; }
+  body { background: #fff; }
+  .page { --fg: #111; --muted: #444; --bg: #fff; --surface: #fff; --surface-2: #f3f3f3; --line: #ccc; --accent: #8a5200; color: #111; }
+}
+/* --- uniform phosphor look: every panel is a screen --- */
+:root { --bg: #040605; }
+body { font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 15px; line-height: 1.7; }
+body::after { display: none; }
+.page, .page[data-mode="tech"] { --fg: color-mix(in srgb, var(--accent) 12%, #f4f6f8); --muted: color-mix(in srgb, var(--accent) 38%, #8d95a4); --surface: color-mix(in srgb, var(--accent) 4%, #060807); --surface-2: color-mix(in srgb, var(--accent) 8%, #0a0d0b); --scan: repeating-linear-gradient(0deg, rgba(0,0,0,.2) 0 1px, transparent 1px 3px), radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 65%); }
+.page h1, .page h2, .page h3, .page .mq-word, .page .statement, .page .id-name, .page[data-mode="tech"] h1, .page[data-mode="tech"] h2, .page[data-mode="tech"] h3 { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: -0.04em; }
+.page h1, .page[data-mode="tech"] h1 { font-size: clamp(2.6rem, 8.2vw, 7rem); }
+.page h2, .page h3 { text-shadow: 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent); }
+.page .tile, .page .contact-tile, .page[data-mode="tech"] .tile, .page[data-mode="tech"] .contact-tile { border-radius: 14px; }
+.page .tile, .page .pop { background-image: var(--scan); box-shadow: inset 0 0 40px rgba(0,0,0,.5); }
+.page .tile.next { background-image: none; box-shadow: none; }
+.page .code { background: #040605; }
+.page .k, .page .w { color: var(--accent); } .page .s, .page .n { color: color-mix(in srgb, var(--accent) 55%, #fff); } .page .p { color: var(--muted); }
+.page .code-bar i { background: var(--accent); opacity: .5; }
+.nav { background: rgba(5,7,6,.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.page .crt-bezel, .page[data-mode="tech"] .crt-bezel { --phos: var(--accent); }
+.page .marquee.led, .page[data-mode="tech"] .marquee.led { --led: var(--accent); }
+.page[data-mode] .cur.is-crt .cur-c { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+.page .dots, .page[data-mode="tech"] .dots { opacity: .5; background-image: radial-gradient(color-mix(in srgb, var(--accent) 40%, transparent) 1px, transparent 1px); background-size: 28px 28px; -webkit-mask-image: radial-gradient(ellipse at 60% 25%, #000, transparent 72%); mask-image: radial-gradient(ellipse at 60% 25%, #000, transparent 72%); }
+.page[data-mode="tech"] .dots { background-image: linear-gradient(color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px); background-size: 44px 44px; }
+/* --- speed --- */
+.page .aurora { inset: auto; left: 0; top: 0; width: 720px; height: 720px; margin: -360px 0 0 -360px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 14%, transparent), transparent 68%); transform: translate3d(70vw, 22vh, 0); will-change: transform; }
+.cur, .cur-dot { will-change: transform; }
+.cur-dot { mix-blend-mode: normal; background: var(--accent); }
+.page .beam::after { animation: none; }
+.mq-track { will-change: transform; }
+.backdrop-blur-sm { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+#skills, #interests, #theme, #projects { content-visibility: auto; contain-intrinsic-size: auto 640px; }
+.topbtn { position: fixed; bottom: 20px; right: 20px; z-index: 60; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .3s, transform .3s; background: rgba(255,255,255,.14); }
+.topbtn.tb-on { opacity: 1; transform: none; pointer-events: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero .pill, .hero h1 span, .hero .lede { animation: heroin .8s cubic-bezier(.2,.8,.2,1) both; }
+  .hero h1 span:nth-child(1) { animation-delay: .12s; } .hero h1 span:nth-child(2) { animation-delay: .24s; } .hero .lede { animation-delay: .36s; }
+  @keyframes heroin { from { opacity: 0; transform: translateY(40px); } }
+}
+@media (max-width: 640px) { .crt .crt-body { animation: none; } .crt-fx::after { animation: none; } .hero::before { display: none; } }
+@media (max-width: 480px) { .page h1, .page[data-mode="tech"] h1 { font-size: clamp(2.3rem, 15vw, 3.6rem); } }
+.hue { -webkit-appearance: none; appearance: none; width: 100%; max-width: 420px; height: 10px; border-radius: 6px; background: linear-gradient(90deg, hsl(0 100% 62%), hsl(60 100% 62%), hsl(120 100% 62%), hsl(180 100% 62%), hsl(240 100% 62%), hsl(300 100% 62%), hsl(360 100% 62%)); }
+.hue::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 3px solid #05070a; box-shadow: 0 0 0 1px var(--fg); cursor: pointer; }
+.hue::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 3px solid #05070a; cursor: pointer; }
+.swatch { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); transition: transform .15s; } .swatch:hover { transform: translateY(-2px); }
+.t-design, .t-tech { transition: opacity .3s, border-color .3s, box-shadow .3s; }
+.page[data-mode="design"] .t-tech, .page[data-mode="tech"] .t-design { opacity: .5; }
+.page[data-mode="design"] .t-design, .page[data-mode="tech"] .t-tech { border-color: var(--accent); box-shadow: 0 0 34px -14px var(--accent), inset 0 0 40px rgba(0,0,0,.5); }
+.cur.is-link .cur-c { width: 46px; height: 46px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.cur.is-btn .cur-c { width: 52px; height: 52px; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.cur-l { left: 22px; top: 22px; transform: none; padding: 2px 8px; border-radius: 999px; background: var(--accent); }
+.send-btn { display: inline-block; padding: 7px 22px; border-radius: 6px; background: var(--phos); color: #050805; font: 400 21px/1.2 "VT323", monospace; letter-spacing: .1em; text-decoration: none; box-shadow: 0 0 20px -4px var(--phos); transition: filter .15s, transform .15s; }
+.send-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+.crt-body input, .crt-body textarea { background: transparent; border: 0; border-radius: 0; box-shadow: none; outline: none; padding: 0 2px; -webkit-appearance: none; appearance: none; caret-color: var(--phos); }
+.crt-body input { border-bottom: 1px dashed color-mix(in srgb, var(--phos) 38%, transparent); }
+.crt-body textarea { border: 1px dashed color-mix(in srgb, var(--phos) 30%, transparent); padding: 6px 8px; margin-top: 4px; }
+.crt-body input:focus, .crt-body textarea:focus { border-color: var(--phos); }
+.crt-body input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #050806 inset; -webkit-text-fill-color: var(--phos); }
+.send-btn { --phos: var(--accent); }
+/* marquee */
+.marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mq-track { padding-right: 32px; }
+.mq-word { font: 800 clamp(2.2rem, 6vw, 4rem) / 1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.03em; white-space: nowrap; }
+.mq-word.o { color: transparent; -webkit-text-stroke: 1.5px var(--fg); }
+
+/* code window */
+.code { background: var(--code-bg); border-radius: 18px; overflow: hidden; border: 1px solid var(--line); margin: 0; }
+.code-bar { display: flex; align-items: center; gap: 7px; padding: 11px 16px; border-bottom: 1px solid var(--line); font: 400 12px "JetBrains Mono", monospace; color: var(--code-pun); }
+.code-bar i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+.code-bar i:nth-child(1) { background: #f28b82; } .code-bar i:nth-child(2) { background: #fdd663; } .code-bar i:nth-child(3) { background: #81c995; }
+.code-bar span { margin-left: 8px; }
+.code pre { margin: 0; padding: 16px 18px 20px; font: 400 13.5px/1.85 "JetBrains Mono", monospace; color: var(--code-fg); white-space: pre-wrap; overflow-wrap: anywhere; counter-reset: l; }
+.code .ln { display: block; counter-increment: l; padding-left: 2.4em; position: relative; }
+.code .ln::before { content: counter(l); position: absolute; left: 0; width: 1.4em; text-align: right; color: var(--code-pun); opacity: 0.6; }
+.k { color: var(--code-key); } .s { color: var(--code-str); } .n { color: var(--code-num); } .w { color: var(--code-kw); } .p { color: var(--code-pun); }
+.caret { display: inline-block; width: 0.55em; height: 1.1em; background: var(--code-fg); vertical-align: text-bottom; margin-left: 2px; }
+
+/* contact */
+
+@media (prefers-reduced-motion: no-preference) {
+  .shimmer::after { animation: shine 3.4s ease-in-out infinite; }
+  @keyframes shine { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+  .beam::after, .stage-wrap::after { animation: beam 7s linear infinite; }
+  @keyframes beam { to { --a: 360deg; } }
+  .pulse { animation: flow var(--d, 3.2s) linear infinite; animation-delay: var(--delay, 0s); }
+  .pulse.rev { animation-direction: reverse; }
+  .stage:hover .pulse { animation-duration: calc(var(--d, 3.2s) * 0.55); }
+  @keyframes flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+  .pin1 { animation: led 1.6s steps(1) infinite; }
+  @keyframes led { 50% { opacity: 0.15; } }
+  .spin { transform-origin: 60px 60px; animation: spin 26s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .mq-track { animation: slide 32s linear infinite; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  .caret { animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .pill i { animation: ping 2.2s ease-in-out infinite; }
+  @keyframes ping { 50% { box-shadow: 0 0 2px var(--green); opacity: 0.6; } }
+  .statement u { animation: hl 1s cubic-bezier(.3, .7, .2, 1) 0.5s both; }
+  @keyframes hl { from { background-size: 0% 0.6em; } to { background-size: 100% 0.6em; } }
+  .tilt { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s ease-out, border-color .3s; }
+  .tile:hover { scale: 1.012; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .dock a { transition: transform .2s, background-color .2s, color .2s; }
+  .dock a:hover { transform: scale(1.2); }
+  .dock a:hover + a, .dock a:has(+ a:hover) { transform: scale(1.08); }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tile { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    @keyframes rise { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .pulse { display: none; } }
+</style>
+
+<div id="root">
+  <!-- Shown until the React app mounts, or if a script fails to load. React replaces it. -->
+  <div style="max-width: 1180px; margin: 0 auto; padding-block: 96px 64px;">
+    <p style="font: 500 14px 'JetBrains Mono', monospace; color: var(--muted); margin: 0 0 12px;">hello, world. I'm</p>
+    <h1 style="font: 800 clamp(3.4rem, 14vw, 8rem) / 0.9 'Bricolage Grotesque', sans-serif; letter-spacing: -0.045em; margin: 0 0 24px;">Aditya Rastogi</h1>
+    <p style="max-width: 32em; margin: 0; color: var(--muted);">First-year B.Tech student in Electronics and Computer Engineering at Thapar Institute of Technology. Batch of 2030.</p>
+  </div>
+</div>
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['"Bricolage Grotesque"', '"Trebuchet MS"', 'system-ui', 'sans-serif'],
+        body: ['Figtree', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'Menlo', 'monospace']
+      },
+      colors: {
+        bg: 'var(--bg)', surface: 'var(--surface)', surface2: 'var(--surface-2)', fg: 'var(--fg)',
+        muted: 'var(--muted)', line: 'var(--line)', blue: 'var(--blue)', red: 'var(--red)',
+        yellow: 'var(--yellow)', green: 'var(--green)', accent: 'var(--accent)'
+      },
+      maxWidth: { wrap: '1180px' }
+    }
+  }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+(function () {
+  var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
+  var html = htm.bind(React.createElement);
+  var cx = function () { return Array.prototype.filter.call(arguments, Boolean).join(' '); };
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var canTilt = !reduced && !!(window.matchMedia && window.matchMedia('(hover: hover)').matches);
+
+  /* ✏️ EDIT THESE: paste your real links between the quotes. Each one turns into a live link on the Contact section automatically. */
+  var ME = { email: 'mail.adityarastogi@gmail.com', github: 'https://github.com/adi-rastogi', linkedin: 'https://www.linkedin.com/in/adi-rastogi', resume: '' };
+
+  function copyText(t, done) {
+    function legacy() {
+      try {
+        var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+        document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, t.length);
+        var ok = document.execCommand('copy'); ta.remove(); done(ok);
+      } catch (e) { done(false); }
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(function () { done(true); }, legacy); else legacy();
+  }
+
+  function ContactVal(p) {
+    var v = ME[p.k], st = useState(false), ok = st[0], setOk = st[1];
+    if (!v) return html`<span className="ph">${p.ph}</span>`;
+    var href = p.k === 'email' ? 'mailto:' + v : v;
+    function copy() { copyText(v, function (good) { setOk(good ? 1 : 2); setTimeout(function () { setOk(0); }, 1500); }); }
+    return html`<span className="contents">
+      <a href=${href} target=${p.k === 'email' ? undefined : '_blank'} rel="noopener" className="min-w-0 break-all font-medium text-accent underline decoration-accent decoration-2 underline-offset-4">${p.k === 'resume' ? 'open resume' : v.replace(/^https?:\/\//, '')}</a>
+      ${p.k === 'resume' ? null : html`<button type="button" onClick=${copy} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-xs text-muted hover:text-fg">${ok === 1 ? 'copied' : ok === 2 ? 'press Ctrl+C' : 'copy'}</button>`}
+    </span>`;
+  }
+
+  function Typer(props) {
+    var w = props.words, ref = useRef(null);
+    useEffect(function () {
+      var tn = document.createTextNode(reduced ? w[0] : ''), i = 0, n = 0, del = false, timer;
+      ref.current.appendChild(tn);
+      if (reduced) return;
+      function tick() {
+        var word = w[i];
+        if (!del) { n++; tn.data = word.slice(0, n); if (n === word.length) { del = true; timer = setTimeout(tick, 1500); return; } timer = setTimeout(tick, 65); }
+        else { n--; tn.data = word.slice(0, n); if (n === 0) { del = false; i = (i + 1) % w.length; timer = setTimeout(tick, 250); return; } timer = setTimeout(tick, 30); }
+      }
+      timer = setTimeout(tick, 250);
+      return function () { clearTimeout(timer); tn.remove(); };
+    }, []);
+    return html`<span><span ref=${ref} className="text-fg"></span><span className="caret" style=${{ background: 'var(--accent)' }}></span></span>`;
+  }
+
+  function Palette(props) {
+    var qs = useState(''), q = qs[0], setQ = qs[1], ix = useState(0), idx = ix[0], setIdx = ix[1], inp = useRef(null), open = props.open;
+    function go(h) { var el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }
+    var all = [
+      ['Go to About', function () { go('#about'); }], ['Go to Design + Tech', function () { go('#interests'); }],
+      ['Go to Skills', function () { go('#skills'); }], ['Pick page colour', function () { go('#theme'); }], 
+      ['Go to Projects', function () { go('#projects'); }], ['Go to Contact', function () { go('#contact'); }],
+      ['Design view: show design first', function () { props.setMode('design'); }], ['Tech view: show code first', function () { props.setMode('tech'); }],
+      ['Back to top', function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); }]
+    ];
+    if (ME.email) all.push(['Copy email address', function () { copyText(ME.email, function () {}); }]);
+    var list = all.filter(function (x) { return x[0].toLowerCase().indexOf(q.toLowerCase()) > -1; });
+    function close() { props.setOpen(false); }
+    function run(x) { close(); setTimeout(x[1], 60); }
+    useEffect(function () {
+      function onKey(e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); props.setOpen(function (o) { return !o; }); }
+        else if (e.key === 'Escape') props.setOpen(false);
+      }
+      window.addEventListener('keydown', onKey);
+      return function () { window.removeEventListener('keydown', onKey); };
+    }, []);
+    useEffect(function () { if (open) { setQ(''); setIdx(0); setTimeout(function () { if (canTilt && inp.current) inp.current.focus(); }, 30); } }, [open]);
+    if (!open) return null;
+    function onInputKey(e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setIdx(Math.min(idx + 1, list.length - 1)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setIdx(Math.max(idx - 1, 0)); }
+      else if (e.key === 'Enter' && list[idx]) run(list[idx]);
+    }
+    return html`<div className="fixed inset-0 z-[70] flex items-start justify-center bg-black/60 px-4 pt-[16vh] backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Command menu" onClick=${close}>
+      <div className="w-full max-w-[520px] overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl" onClick=${function (e) { e.stopPropagation(); }}>
+        <input ref=${inp} value=${q} onChange=${function (e) { setQ(e.target.value); setIdx(0); }} onKeyDown=${onInputKey} placeholder="Jump to a section or run an action" aria-label="Search commands"
+          className="w-full border-b border-line bg-transparent px-5 py-4 font-mono text-sm text-fg outline-none placeholder:text-muted" />
+        <ul className="max-h-[320px] overflow-auto p-2">
+          ${list.length ? list.map(function (x, n) {
+            return html`<li key=${x[0]}><button type="button" onClick=${function () { run(x); }} onMouseEnter=${function () { setIdx(n); }}
+              className=${cx('w-full rounded-xl px-3.5 py-2.5 text-left text-[15px]', n === idx ? 'bg-surface2 text-fg' : 'text-muted')}>${x[0]}</button></li>`;
+          }) : html`<li className="px-3.5 py-3 text-sm text-muted">Nothing matches "${q}". Try "projects" or "tech".</li>`}
+        </ul>
+        <p className="border-t border-line px-5 py-2.5 font-mono text-xs text-muted">↑ ↓ to move · Enter to run · Esc to close</p>
+      </div>
+    </div>`;
+  }
+
+  /* shared class strings */
+  var LABEL = 'mb-3.5 flex items-center gap-2.5 font-mono text-[13px] tracking-[0.04em] text-muted before:block before:h-2.5 before:w-2.5 before:rounded-sm before:bg-[var(--c)] sec-label';
+  var H2 = 'mb-7 font-display font-extrabold leading-[0.98] tracking-[-0.035em] text-[clamp(2.2rem,7vw,4.2rem)] text-balance';
+  var H3 = 'font-display text-[1.55rem] font-bold leading-[1.12] tracking-[-0.02em]';
+  var BODY = 'text-base text-muted';
+  var KICKER = 'font-mono text-[13px] text-muted';
+  var CHIP = 'rounded-full border border-line bg-surface2 px-3.5 py-1.5 text-sm';
+
+  /* hook: spotlight position + optional 3D tilt, written straight to CSS variables */
+  function useTilt(max) {
+    var ref = useRef(null);
+    function onPointerMove(e) {
+      var el = ref.current; if (!el) return;
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--y', (e.clientY - r.top) + 'px');
+      if (canTilt && max) {
+        el.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * max).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - 0.5) * max).toFixed(2) + 'deg');
+      }
+    }
+    function onPointerLeave() {
+      var el = ref.current; if (!el) return;
+      el.style.setProperty('--ry', '0deg'); el.style.setProperty('--rx', '0deg');
+    }
+    return { ref: ref, onPointerMove: onPointerMove, onPointerLeave: onPointerLeave };
+  }
+
+  function Tile(props) {
+    var t = useTilt(props.tilt === false ? 0 : 7);
+    return html`<div ref=${t.ref} onPointerMove=${t.onPointerMove} onPointerLeave=${t.onPointerLeave}
+      id=${props.id} className=${cx('tile', props.tilt === false ? '' : 'tilt', props.className)}>${props.children}</div>`;
+  }
+
+  function NumberTicker(props) {
+    var to = props.to;
+    var s = useState(to), v = s[0], setV = s[1];
+    var ref = useRef(null);
+    useEffect(function () {
+      if (reduced || !window.IntersectionObserver) return;
+      var raf;
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var t0 = null, from = to - 40;
+        var step = function (ts) {
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / 1400, 1);
+          setV(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+      });
+      io.observe(ref.current);
+      return function () { io.disconnect(); if (raf) cancelAnimationFrame(raf); };
+    }, []);
+    return html`<span ref=${ref}>${v}</span>`;
+  }
+
+  function Progress() {
+    var ref = useRef(null);
+    useEffect(function () {
+      var ticking = false;
+      function update() {
+        var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+        if (ref.current) ref.current.style.setProperty('--p', max > 0 ? Math.min(h.scrollTop / max, 1).toFixed(4) : '0');
+        ticking = false;
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      update();
+      return function () { window.removeEventListener('scroll', onScroll); };
+    }, []);
+    return html`<div ref=${ref} className="progress" aria-hidden="true"></div>`;
+  }
+
+  function Nav(props) {
+    var links = [['about', '#about'], ['skills', '#skills'], ['design + tech', '#interests'], ['projects', '#projects'], ['contact', '#contact']];
+    var as = useState(''), active = as[0], setActive = as[1];
+    useEffect(function () {
+      if (!window.IntersectionObserver) return;
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); }); }, { rootMargin: '-40% 0px -55% 0px' });
+      ['about', 'skills', 'interests', 'projects', 'contact'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+      return function () { io.disconnect(); };
+    }, []);
+    return html`<nav aria-label="Main" className="nav sticky z-20 mt-3 flex items-center gap-3 rounded-full border border-line py-2 pl-4 pr-2 sm:pl-5"
+      style=${{ top: 'calc(env(safe-area-inset-top, 0px) + 12px)' }}>
+      <div className="whitespace-nowrap font-mono text-sm text-muted"><i className="live mr-2 inline-block h-2 w-2 rounded-full bg-accent align-middle" style=${{ boxShadow: '0 0 8px var(--accent)' }}></i><b className="font-medium text-fg"><span className="min-[430px]:hidden">ar</span><span className="hidden min-[430px]:inline">aditya.rastogi</span></b></div>
+      <div className="dock ml-auto mr-2 hidden gap-0.5 font-mono text-[13px] md:flex">
+        ${links.map(function (l) {
+          return html`<a key=${l[1]} href=${l[1]} className=${cx('rounded-full px-3 py-1.5 hover:bg-surface2 hover:text-fg', active === l[1].slice(1) ? 'bg-surface2 text-fg' : 'text-muted')}>${l[0]}</a>`;
+        })}
+      </div>
+      <button type="button" onClick=${props.onOpen} aria-label="Open command menu" className="ml-auto rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted hover:text-fg md:ml-0"><span className="md:hidden">menu</span><span className="hidden md:inline">⌘K</span></button>
+      <div role="group" aria-label="Switch view" title="Choose which side of me the page shows first" className="flex rounded-full border border-line bg-bg p-[3px]">
+        ${['design', 'tech'].map(function (m) {
+          return html`<button key=${m} type="button" onClick=${function () { props.setMode(m); }} aria-pressed=${props.mode === m}
+            className=${cx('rounded-full px-3.5 py-1.5 font-mono text-[13px] font-medium transition-colors duration-300 sm:px-4', props.mode === m ? 'seg-on' : 'text-muted')}>
+            ${m === 'design' ? 'Design' : 'Tech'}</button>`;
+        })}
+      </div>
+    </nav>`;
+  }
+
+  function Hero(props) {
+    var facts = [['blue', 'Thapar Institute of Technology'], ['red', 'B.Tech, 1st year'], ['yellow', 'ENC · Electronics and Computer Engineering'], ['green', 'Batch of 2030']];
+    return html`<div className="hero relative grid items-center gap-9 pb-8 pt-10 md:grid-cols-[1.05fr_1fr] md:gap-10 md:pb-12 md:pt-16">
+      <div className="relative min-w-0">
+        <div className="pill mb-5 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-[13px] font-medium">
+          <i className="block h-2 w-2 rounded-full bg-green"></i>Open to projects and collaborations
+        </div>
+        <p className="mb-2.5 font-mono text-sm text-muted"><span className="text-accent">${'>'}</span> hello, world. I'm</p>
+        <h1 className="mb-8 font-display text-[clamp(3.4rem,19vw,8rem)] font-extrabold leading-[0.88] tracking-[-0.045em] md:text-[clamp(3.4rem,10.5vw,8.4rem)]">
+          <span className="block">Aditya</span><span className="outline-text block">Rastogi</span>
+        </h1>
+        <p className="lede mb-6 max-w-[28em] text-[clamp(1.1rem,2.2vw,1.3rem)] leading-normal">First-year B.Tech student in Electronics and Computer Engineering at Thapar Institute of Technology. I like designing things and then building them, <em className="serif">${props.mode === 'design' ? 'from a rough sketch to a polished screen.' : 'from a blank file to something that runs.'}</em></p>
+        <p className="mb-6 font-mono text-[15px] text-muted"><span className="text-accent">$</span> currently into <${Typer} key=${props.mode} words=${props.mode === 'design' ? ['clean layouts', 'posters and visuals', 'interfaces people enjoy', 'ideas worth designing'] : ['clean code', 'C and C++ programs', 'web pages that work', 'things worth building']} /><span className="ml-3 hidden text-xs md:inline"><span className="kbd">Ctrl/⌘ K</span> to jump around</span></p>
+        <ul className="mb-7 flex flex-wrap gap-2">
+          ${facts.map(function (f) {
+            return html`<li key=${f[1]} style=${{ '--c': 'var(--' + f[0] + ')' }}
+              className="rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-[13px] before:mr-2 before:inline-block before:h-[7px] before:w-[7px] before:rounded-[2px] before:bg-[var(--c)]">${f[1]}</li>`;
+          })}
+        </ul>
+        <div className="flex flex-wrap gap-3">
+          <a href="#interests" className="mag shimmer inline-block rounded-full border-[1.5px] border-fg bg-fg px-6 py-3.5 text-base font-semibold text-bg transition-transform hover:-translate-y-0.5">See what I'm into</a>
+          <a href="#contact" className="mag inline-block rounded-full border-[1.5px] border-fg px-6 py-3.5 text-base font-semibold text-fg transition-transform hover:-translate-y-0.5">Say hello</a>
+          ${ME.resume ? html`<a href=${ME.resume} target="_blank" rel="noopener" className="mag inline-block rounded-full border-[1.5px] border-line px-6 py-3.5 text-base font-semibold text-fg transition-transform hover:-translate-y-0.5">Resume</a>` : null}
+        </div>
+      </div>
+      <${Terminal} mode=${props.mode} setMode=${props.setMode} />
+    </div>`;
+  }
+
+  function Marquee() {
+    var words = [['HTML', 0, 'blue'], ['CSS', 1, 'red'], ['JAVASCRIPT', 0, 'yellow'], ['C', 1, 'green'], ['C++', 0, 'blue'], ['FIGMA', 1, 'red'], ['CANVA', 0, 'yellow'], ['UI / UX', 1, 'green']];
+    var row = function (k) {
+      return words.map(function (w, i) {
+        return html`<${React.Fragment} key=${k + i}>
+          <span className=${cx('mq-word', w[1] && 'o')}>${w[0]}</span>
+          <b className="block h-3.5 w-3.5 flex-none rounded" style=${{ background: 'var(--' + w[2] + ')' }}></b>
+        <//>`;
+      });
+    };
+    return html`<div className="marquee led overflow-hidden py-3" aria-hidden="true">
+      <div className="mq-track flex w-max items-center gap-8">${row('a')}${row('b')}</div>
+    </div>`;
+  }
+
+  var codeLines = [
+    [['w', 'const'], ['t', ' aditya = {']],
+    [['t', '  '], ['k', 'degree'], ['p', ':'], ['t', ' '], ['s', '"B.Tech"'], ['p', ',']],
+    [['t', '  '], ['k', 'branch'], ['p', ':'], ['t', ' '], ['s', '"Electronics and Computer Engineering"'], ['p', ',']],
+    [['t', '  '], ['k', 'college'], ['p', ':'], ['t', ' '], ['s', '"Thapar Institute of Technology"'], ['p', ',']],
+    [['t', '  '], ['k', 'year'], ['p', ':'], ['t', ' '], ['n', '1'], ['p', ','], ['t', ' '], ['k', 'batch'], ['p', ':'], ['t', ' '], ['n', '2030'], ['p', ',']],
+    [['t', '  '], ['k', 'focus'], ['p', ':'], ['t', ' ['], ['s', '"design"'], ['p', ','], ['t', ' '], ['s', '"tech"'], ['t', ']'], ['p', ',']],
+    [['t', '  '], ['k', 'learning'], ['p', ':'], ['t', ' ['], ['s', '"HTML"'], ['p', ','], ['t', ' '], ['s', '"CSS"'], ['p', ','], ['t', ' '], ['s', '"JS"'], ['p', ','], ['t', ' '], ['s', '"C"'], ['p', ','], ['t', ' '], ['s', '"C++"'], ['t', ']'], ['p', ',']],
+    [['t', '  '], ['k', 'design'], ['p', ':'], ['t', ' ['], ['s', '"Figma"'], ['p', ','], ['t', ' '], ['s', '"Canva"'], ['t', ']'], ['p', ',']],
+    [['t', '};']]
+  ];
+
+  function CodeWindow() {
+    return html`<figure className="code">
+      <div className="code-bar"><i></i><i></i><i></i><span>aditya.js</span></div>
+      <pre><code>${codeLines.map(function (ln, i) {
+        return html`<span key=${i} className="ln">${ln.map(function (tk, j) {
+          return html`<span key=${j} className=${tk[0]}>${tk[1]}</span>`;
+        })}${i === codeLines.length - 1 ? html`<span className="caret"></span>` : null}</span>`;
+      })}</code></pre>
+    </figure>`;
+  }
+
+  function About() {
+    return html`<section id="about" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--blue)' }}>
+      <p className=${LABEL}>// about</p>
+      <div className="grid grid-cols-12 gap-3.5">
+        <${Tile} className="beam col-span-12 md:col-span-7">
+          <p className="statement max-w-[22em] font-display text-[clamp(1.7rem,4vw,2.7rem)] font-semibold leading-[1.14] tracking-[-0.025em] text-fg text-balance">I like both halves of making things: <u>how they look</u> and <u>how they work</u>.</p>
+          <p className=${BODY}>I'm a first-year B.Tech student in Electronics and Computer Engineering, building my foundations and looking for projects and people to learn with.</p>
+        <//>
+        <${Tile} className="col-span-12 md:col-span-5"><${CodeWindow} /><//>
+      </div>
+    </section>`;
+  }
+
+  function Interests() {
+    var principles = [['blue', 'Start small, ship early', 'A rough version people can use beats a perfect one nobody sees.'],
+      ['red', 'Sweat the details', 'Spacing, wording and edge cases are where a project starts to feel finished.'],
+      ['green', 'Learn out loud', "Ask questions, share what I'm working on, and help whoever is one step behind me :)"]];
+    var BIG = 'font-display text-[clamp(2.4rem,5vw,3.4rem)] font-extrabold leading-[0.95] tracking-[-0.04em]';
+    return html`<section id="interests" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--yellow)' }}>
+      <p className=${LABEL}>// what I'm into</p>
+      <h2 className=${H2}>Two sides of the <em className="serif">same screen</em></h2>
+      <div className="grid grid-cols-12 gap-3.5">
+        <${Tile} className="t-design col-span-12 md:col-span-4">
+          <p className=${KICKER}>side one</p>
+          <h3 className=${BIG}>Design</h3>
+          <p className=${BODY}>Layout, type and colour, and how a thing feels to use before anyone reads a word of it.</p>
+          <ul className="mt-auto flex flex-wrap gap-2">${['Figma', 'Canva', 'Layout', 'Colour'].map(function (c) { return html`<li key=${c} className=${CHIP}>${c}</li>`; })}</ul>
+        <//>
+        <${Tile} className="t-tech col-span-12 md:col-span-4">
+          <p className=${KICKER}>side two</p>
+          <h3 className=${BIG}>Tech</h3>
+          <p className=${BODY}>Code, the web and the systems underneath. I like knowing how things work and making them actually run.</p>
+          <ul className="mt-auto flex flex-wrap gap-2">${['HTML / CSS', 'JavaScript', 'C', 'C++'].map(function (c) { return html`<li key=${c} className=${CHIP}>${c}</li>`; })}</ul>
+        <//>
+        <${IdCard} />
+        ${principles.map(function (p) {
+          return html`<${Tile} key=${p[1]} className="col-span-12 md:col-span-4">
+            <span className="block h-3 w-3 rounded-[3px]" style=${{ background: 'var(--' + p[0] + ')' }}></span>
+            <h3 className=${H3}>${p[1]}</h3>
+            <p className=${BODY}>${p[2]}</p>
+          <//>`;
+        })}
+      </div>
+    </section>`;
+  }
+
+  function Projects() {
+    var tags = ['HTML', 'CSS', 'JavaScript'];
+    return html`<section id="projects" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--red)' }}>
+      <p className=${LABEL}>// projects</p>
+      <h2 className=${H2}>Just <em className="serif">getting started</em></h2>
+      <div className="grid grid-cols-12 gap-3.5">
+        <${Tile} className="col-span-12 md:col-span-7">
+          <h3 className="font-display text-[1.7rem] font-bold leading-[1.1] tracking-[-0.02em]">This website</h3>
+          <p className=${BODY}>My personal portfolio, designed and built as a first step. Try the terminal at the top, the Design and Tech views, and the command menu (Ctrl/⌘ K). It will grow as I add real work to it.</p>
+          <div className="mt-auto flex flex-wrap gap-1.5">${tags.map(function (t) { return html`<span key=${t} className="rounded-full border border-line px-2.5 py-1 font-mono text-xs text-muted">${t}</span>`; })}</div>
+        <//>
+        <${Tile} className="next col-span-12 md:col-span-5">
+          <h3 className=${H3}>Next up</h3>
+          <p className=${BODY}>My first design case study, first full coded project and first team build will go here as I finish them.</p>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function EmailBtn() {
+    var o = useState(false), open = o[0], setOpen = o[1], st = useState(''), msg = st[0], setMsg = st[1];
+    var su = encodeURIComponent('Hello from your portfolio'), to = encodeURIComponent(ME.email);
+    var opts = [['Gmail', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + su], ['Outlook', 'https://outlook.live.com/mail/0/deeplink/compose?to=' + to + '&subject=' + su]];
+    if (!canTilt) opts.push(['Mail app', 'mailto:' + ME.email + '?subject=' + su]);
+    function copy() { copyText(ME.email, function (good) { setMsg(good ? 'Address copied: ' + ME.email : 'Write to ' + ME.email); }); }
+    function toggle() { if (!open) copy(); setOpen(!open); }
+    return html`<div className="mt-6">
+      <button type="button" aria-expanded=${open} onClick=${toggle} className="send-btn">EMAIL ME ▸</button>
+      ${open ? html`<div className="mt-4 flex flex-wrap gap-2">
+        ${opts.map(function (x) { return html`<a key=${x[0]} href=${x[1]} target=${x[0] === 'Mail app' ? undefined : '_blank'} rel="noopener" className="term-chip" style=${{ fontSize: '14px', padding: '7px 14px' }}>${x[0]}</a>`; })}
+        <button type="button" onClick=${copy} className="term-chip" style=${{ fontSize: '14px', padding: '7px 14px' }}>Copy address</button>
+      </div>` : null}
+      ${msg ? html`<p className="mt-3 font-mono text-[13px] text-muted" aria-live="polite">${msg}. If nothing opens, paste it into a new email.</p>` : null}
+    </div>`;
+  }
+
+  function Contact() {
+    var rows = [['email', 'your email address'], ['github', 'github.com/username'], ['linkedin', 'linkedin.com/in/username'], ['resume', 'resume link']].filter(function (r) { return ME[r[0]]; });
+    return html`<section id="contact" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--yellow)' }}>
+      <p className=${LABEL}>// contact</p>
+      <${Tile} id="contact-tile" tilt=${false} className="contact-tile">
+        <div className="max-w-[44rem]">
+          <h2 className="mb-3 font-display text-[clamp(2.2rem,6vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.035em] text-balance">Let's build <em className="serif">something.</em></h2>
+          <p className=${BODY}>Open to learning, collaborating and trying new things in design and code.</p>
+          ${ME.email ? html`<${EmailBtn} />` : null}
+        </div>
+        <ul className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5">
+          ${rows.map(function (r) {
+            return html`<li key=${r[0]} className="flex min-w-0 flex-col gap-2 rounded-xl border border-line bg-surface-2 p-4">
+              <p className="font-mono text-[13px] text-muted">${r[0]}</p>
+              <div className="flex min-w-0 flex-wrap items-center gap-3"><${ContactVal} k=${r[0]} ph=${r[1]} /></div>
+            </li>`;
+          })}
+        </ul>
+      <//>
+    </section>`;
+  }
+
+    var BOOT = [['a', '▄▀█ █▀▄ █ ▀█▀ █▄█ ▄▀█'], ['a', '█▀█ █▄▀ █  █   █  █▀█'], ['o', 'ADITYA-OS 1.0 booting...'], ['o', '[ ok ] profile: Aditya Rastogi, 1st-year B.Tech, TIET'], ['o', '[ ok ] learning: HTML · CSS · JavaScript · C · C++'], ['o', '[ ok ] design tools: Figma · Canva'], ['o', 'Ready. Type help (Tab completes, ↑ repeats) or tap a command.']];
+
+  var CMDS = ['about', 'skills', 'education', 'projects', 'links', 'email', 'contact', 'theme', 'open', 'whoami', 'clear', 'help', 'ls'];
+
+  function Terminal(props) {
+    var t = useTilt(5), ls = useState(reduced ? BOOT : []), lines = ls[0], setLines = ls[1];
+    var vs = useState(''), v = vs[0], setV = vs[1], hist = useRef([]), hp = useRef(0), box = useRef(null), inp = useRef(null);
+    var IDS = { theme: 1, about: 1, skills: 1, interests: 1, projects: 1, contact: 1 };
+    function go(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }
+    useEffect(function () { if (box.current) box.current.scrollTop = box.current.scrollHeight; }, [lines]);
+    useEffect(function () {
+      if (reduced) return;
+      var i = 0, timer;
+      function next() { if (i >= BOOT.length) return; var ln = BOOT[i++]; setLines(function (l) { return l.concat([ln]); }); timer = setTimeout(next, 380 + Math.random() * 220); }
+      timer = setTimeout(next, 900);
+      return function () { clearTimeout(timer); };
+    }, []);
+    function run(raw) {
+      var c = raw.trim(), a = c.split(/\s+/), n = a[0].toLowerCase(), out;
+      if (!c) return;
+      hist.current.push(c); hp.current = hist.current.length;
+      if (n === 'clear') { setLines([]); return; }
+      if (n === 'help') out = ['about · skills · education · projects · links · email · contact · ls', 'theme [design|tech] · open <section> · whoami · clear'];
+      else if (n === 'about') out = ['1st-year B.Tech, Electronics and Computer Engineering, TIET.', 'Curious about how things are built and how they feel to use.'];
+      else if (n === 'skills') { var a1 = 'Learning: HTML · CSS · JavaScript · C · C++', a2 = 'Design tools: Figma · Canva'; out = props.mode === 'design' ? [a2, a1] : [a1, a2]; }
+      else if (n === 'projects') { out = ['1. this website (you are inside it)', 'More on the way. Scrolling to projects...']; go('projects'); }
+      else if (n === 'contact') { out = ['Scrolling to contact...']; go('contact'); }
+      else if (n === 'education') out = ['B.Tech, Electronics and Computer Engineering', 'Thapar Institute of Technology, Patiala · 2026 to 2030'];
+      else if (n === 'links') out = ['email     ' + (ME.email || '-'), 'github    ' + (ME.github || '-'), 'linkedin  ' + (ME.linkedin || '-'), 'resume    ' + (ME.resume || '-')];
+      else if (n === 'email') { if (ME.email) { copyText(ME.email, function () {}); out = ['Copied: ' + ME.email]; } else out = ['No email added yet. Try: open contact']; }
+      else if (n === 'ls') out = ['about  skills  interests  projects  contact'];
+      else if (n === 'whoami') out = ['aditya: designer + developer, in progress'];
+      else if (n === 'theme') { var m = a[1] === 'design' || a[1] === 'tech' ? a[1] : (props.mode === 'design' ? 'tech' : 'design'); props.setMode(m); out = ['Switched to ' + m + ' view.']; }
+      else if (n === 'open') { if (IDS[a[1]]) { go(a[1]); out = ['Scrolling to ' + a[1] + '...']; } else out = ['Usage: open <about|skills|interests|projects|contact>']; }
+      else out = ['command not found: ' + n + '. Try help.'];
+      setLines(function (l) { return l.concat([['p', c]], out.map(function (x) { return ['o', x]; })); });
+    }
+    function onKey(e) {
+      if (e.key === 'Tab') { e.preventDefault(); var hit = CMDS.filter(function (c) { return v && c.indexOf(v.toLowerCase()) === 0; })[0]; if (hit) setV(hit); }
+      else if (e.key === 'Enter') { run(v); setV(''); }
+      else if (e.key === 'ArrowUp' && hist.current.length) { e.preventDefault(); hp.current = Math.max(hp.current - 1, 0); setV(hist.current[hp.current]); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); hp.current = Math.min(hp.current + 1, hist.current.length); setV(hist.current[hp.current] || ''); }
+    }
+    return html`<div ref=${t.ref} onPointerMove=${t.onPointerMove} onPointerLeave=${t.onPointerLeave} className="crt-bezel tilt min-w-0">
+      <div className="crt" onClick=${function () { if (canTilt && inp.current) inp.current.focus({ preventScroll: true }); }}>
+        <div className="crt-bar"><span>ADITYA-OS 1.0 · TYPE HERE</span><span className="led"></span></div>
+        <div ref=${box} className="crt-body h-[330px] overflow-auto px-5 py-4" aria-live="polite">
+          ${lines.map(function (l, i) {
+            return html`<div key=${i} className=${l[0] === 'p' ? 'text-fg' : l[0] === 'a' ? 'text-fg ascii' : 'text-muted'}>${l[0] === 'p' ? html`<span className="text-accent">&gt; </span>` : null}${l[1]}</div>`;
+          })}
+          <label className="flex items-center"><span className="text-accent">&gt; </span>
+            <input ref=${inp} value=${v} onChange=${function (e) { setV(e.target.value); }} onKeyDown=${onKey} aria-label="Terminal command" autoCapitalize="off" autoComplete="off" spellCheck=${false}
+              className="ml-2 min-w-0 flex-1 bg-transparent text-[16px] text-fg outline-none sm:text-[13.5px]" style=${{ caretColor: 'var(--accent)' }} /></label>
+        </div>
+        <div className="crt-fx" aria-hidden="true"></div>
+        <div className="flex flex-wrap gap-2 border-t border-line px-4 py-3">
+          ${['help', 'about', 'skills', 'education', 'links', 'theme'].map(function (x) { return html`<button key=${x} type="button" className="term-chip" onClick=${function () { run(x); }}>${x}</button>`; })}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function TopBtn() {
+    var ref = useRef(null);
+    useEffect(function () {
+      var pending = false, shown = false;
+      function f() {
+        pending = false; var h = document.documentElement, m = h.scrollHeight - h.clientHeight, pr = m > 0 ? h.scrollTop / m : 0, el = ref.current;
+        if (!el) return;
+        el.style.background = 'conic-gradient(var(--accent) ' + (pr * 360).toFixed(1) + 'deg, rgba(255,255,255,.14) 0)';
+        var on = pr > 0.06; if (on !== shown) { shown = on; el.classList.toggle('tb-on', on); }
+      }
+      function onS() { if (!pending) { pending = true; requestAnimationFrame(f); } }
+      window.addEventListener('scroll', onS, { passive: true }); f();
+      return function () { window.removeEventListener('scroll', onS); };
+    }, []);
+    return html`<button ref=${ref} type="button" aria-label="Back to top" className="topbtn" onClick=${function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); }}><span className="grid h-[42px] w-[42px] place-items-center rounded-full bg-surface text-fg">↑</span></button>`;
+  }
+
+  /* its like [name, badge text, one line]. for reference for me*/
+  var SKILLS = [
+    ['Web', 'HTML', '</>', 'The structure of web pages'], ['Web', 'CSS', '{ }', 'Styling and layouts'], ['Web', 'JavaScript', 'JS', 'Making pages interactive'],
+    ['Programming', 'C', 'C', 'Programming fundamentals'], ['Programming', 'C++', 'C++', 'Classes and data structures'],
+    ['Design', 'Figma', 'Fi', 'Interface design and prototypes'], ['Design', 'Canva', 'Ca', 'Posters and quick graphics']
+  ];
+
+  function Skills(props) {
+    var isOn = function (it) { return props.mode === 'design' ? it[0] === 'Design' : it[0] !== 'Design'; };
+    var list = SKILLS.slice().sort(function (a, b) { return (isOn(a) ? 0 : 1) - (isOn(b) ? 0 : 1); });
+    var cols = ['blue', 'red', 'yellow', 'green'];
+    return html`<section id="skills" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--green)' }}>
+      <p className=${LABEL}>// skills</p>
+      <h2 className=${H2}>What I'm <em className="serif">learning</em></h2>
+      <p className=${BODY + ' mb-6 max-w-[38em]'}>I'm early in my journey, so this is an honest list of what I'm working on right now. Showing ${props.mode === 'design' ? 'design' : 'tech'} first; the switch at the top flips it.</p>
+      <div className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
+        ${list.map(function (it, i) {
+          return html`<div key=${it[1]} className="pop flex flex-col rounded-[20px] border border-line bg-surface p-5 transition-colors hover:border-accent sm:p-6" style=${{ '--i': i, opacity: isOn(it) ? 1 : 0.45, transition: 'opacity .3s' }}>
+            <div className="mb-5 flex items-center justify-between gap-3">
+              <span className="keycap grid h-12 w-12 flex-none place-items-center rounded-xl font-mono text-sm font-bold text-bg" style=${{ background: 'var(--accent)' }}>${it[2]}</span>
+              <span className="font-mono text-xs text-muted">${it[0].toLowerCase()}</span>
+            </div>
+            <h3 className="font-display text-xl font-bold tracking-[-0.02em]">${it[1]}</h3>
+            <p className="mt-1 text-sm text-muted">${it[3]}</p>
+            <div className="mt-auto pt-5"><span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-muted"><i className="live block h-1.5 w-1.5 rounded-full bg-accent"></i>learning</span></div>
+          </div>`;
+        })}
+        <div className="grid place-items-center rounded-[20px] border border-dashed border-line p-5 text-center sm:p-6 text-sm text-muted">More coming as I learn</div>
+      </div>
+    </section>`;
+  }
+
+    function IdCard() {
+    return html`<${Tile} className="col-span-12 md:col-span-4">
+      <div className="idcard">
+        <div className="id-slot"></div>
+        <p className="id-top">THAPAR INSTITUTE · STUDENT</p>
+        <div className="id-photo"><span>AR</span></div>
+        <h3 className="id-name">Aditya Rastogi</h3>
+        <p className="id-line">B.Tech · ENC · Electronics and Computer Engineering</p>
+        <p className="id-line">Patiala, Punjab · Batch of <${NumberTicker} to=${2030} /></p>
+        <div className="id-bars" aria-hidden="true"></div>
+      </div>
+    <//>`;
+  }
+
+  var PHOS = [['Amber', '#ffbf47'], ['Green', '#4dff9d'], ['Cyan', '#4de1ff'], ['Pink', '#ff6ad5'], ['Ice', '#cfe3ff']];
+
+  function Theme() {
+    var st = useState(function () { try { return localStorage.getItem('ar-accent') || ''; } catch (e) { return ''; } }), col = st[0], setCol = st[1], hs = useState(160), h = hs[0], setH = hs[1];
+    useEffect(function () {
+      var el = document.querySelector('.page'); if (!el) return;
+      if (col) el.style.setProperty('--accent', col); else el.style.removeProperty('--accent');
+      try { if (col) localStorage.setItem('ar-accent', col); else localStorage.removeItem('ar-accent'); } catch (e) {}
+    }, [col]);
+    useEffect(function () { function f() { setCol(''); } window.addEventListener('modechange', f); return function () { window.removeEventListener('modechange', f); }; }, []);
+    return html`<section id="theme" className="pt-14 sm:pt-20" style=${{ '--c': 'var(--yellow)' }}>
+      <p className=${LABEL}>// theme</p>
+      <h2 className=${H2}>Pick your <em className="serif">phosphor</em></h2>
+      <${Tile} tilt=${false} className="">
+        <p className=${BODY}>Choose the colour of the whole site, CRT screens included. Your choice is saved on this device.</p>
+        <div className="flex flex-wrap items-center gap-3">
+          ${PHOS.map(function (c) {
+            return html`<button key=${c[0]} type="button" aria-label=${c[0]} aria-pressed=${col === c[1]} onClick=${function () { setCol(c[1]); }} className="swatch" style=${{ background: c[1], outline: col === c[1] ? '2px solid var(--fg)' : 'none', outlineOffset: '3px' }}></button>`;
+          })}
+        </div>
+        <label className="mt-2 block"><span className="mb-3 block font-mono text-[13px] text-muted">or slide to any colour</span>
+          <input type="range" min=${0} max=${360} value=${h} aria-label="Hue" className="hue" onChange=${function (e) { var v = +e.target.value; setH(v); setCol('hsl(' + v + ' 100% 62%)'); }} /></label>
+        <button type="button" onClick=${function () { setCol(''); }} className="term-chip self-start">reset to default</button>
+      <//>
+    </section>`;
+  }
+
+  function App() {
+    var s = useState('design'), mode = s[0], setModeRaw = s[1];
+    function setMode(m) {
+      window.dispatchEvent(new Event('modechange'));
+      if (m === mode) return;
+      if (!reduced) { var fx = document.createElement('div'); fx.className = 'tvfx'; document.body.appendChild(fx); setTimeout(function () { fx.remove(); }, 650); }
+      setModeRaw(m);
+    }
+    var pl = useState(false), pal = pl[0], setPal = pl[1];
+    useEffect(function () { document.documentElement.setAttribute('data-mode', mode); }, [mode]);
+    useEffect(function () {
+      if (reduced || !window.IntersectionObserver) return;
+      var hs = document.querySelectorAll('main h2'), io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('dec-on'); io.unobserve(en.target); } });
+      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+      hs.forEach(function (h) { if (h.closest('.contact-tile')) return; h.classList.add('dec'); io.observe(h); });
+      return function () { io.disconnect(); hs.forEach(function (h) { h.classList.remove('dec', 'dec-on'); }); };
+    }, []);
+    useEffect(function () {
+      if (reduced) return;
+      
+      if (!canTilt) return;
+      var pg = document.querySelector('.page'), cur = document.createElement('div'), c = document.createElement('i'), lb = document.createElement('span'), dot = document.createElement('div'), au = document.querySelector('.aurora'), x = 0, y = 0, tx = 0, ty = 0, st = '', down = false, raf = 0, run = false, last = null;
+      cur.className = 'cur'; c.className = 'cur-c'; lb.className = 'cur-l'; cur.appendChild(c); cur.appendChild(lb); dot.className = 'cur-dot'; pg.appendChild(cur); pg.appendChild(dot);
+      document.documentElement.classList.add('has-cur');
+      function paint() { cur.className = 'cur on ' + st + (down ? ' down' : ''); dot.className = 'cur-dot on'; }
+      function tick() {
+        x += (tx - x) * 0.2; y += (ty - y) * 0.2;
+        var t = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)'; cur.style.transform = t; if (au) au.style.transform = t;
+        if (Math.abs(tx - x) + Math.abs(ty - y) > 0.5) raf = requestAnimationFrame(tick); else run = false;
+      }
+      function mv(e) {
+        tx = e.clientX; ty = e.clientY; dot.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0)';
+        if (e.target !== last) {
+          last = e.target;
+          var t = e.target, el = t && t.closest ? t.closest('input,textarea,a,button,[role=tab],[role=switch]') : null, ns = '';
+          if (t && t.closest && t.closest('.crt-body')) ns = 'is-crt';
+          else if (el) { var tg = el.tagName; if (tg === 'INPUT' || tg === 'TEXTAREA') ns = 'is-text'; else if (tg === 'A') { ns = 'is-link'; lb.textContent = (el.getAttribute('href') || '').indexOf('mailto') === 0 ? 'email' : 'open'; } else ns = 'is-btn'; }
+          if (ns !== st || !cur.classList.contains('on')) { st = ns; paint(); }
+        } else if (!cur.classList.contains('on')) paint();
+        if (!run) { run = true; raf = requestAnimationFrame(tick); }
+      }
+      function dn() { down = true; paint(); var q = document.createElement('div'); q.className = 'cur-pop'; q.style.left = tx + 'px'; q.style.top = ty + 'px'; pg.appendChild(q); setTimeout(function () { q.remove(); }, 550); }
+      function up() { down = false; paint(); }
+      function lv() { cur.classList.remove('on'); dot.classList.remove('on'); }
+      window.addEventListener('pointermove', mv, { passive: true }); window.addEventListener('pointerdown', dn); window.addEventListener('pointerup', up); document.documentElement.addEventListener('mouseleave', lv);
+      return function () { cancelAnimationFrame(raf); window.removeEventListener('pointermove', mv); window.removeEventListener('pointerdown', dn); window.removeEventListener('pointerup', up); document.documentElement.removeEventListener('mouseleave', lv); document.documentElement.classList.remove('has-cur'); cur.remove(); dot.remove(); };
+    }, []);
+    
+    return html`<div className="page" data-mode=${mode}>
+      <${Progress} />
+      <div className="aurora" aria-hidden="true"></div><div className="frame" aria-hidden="true"></div><div className="dots" aria-hidden="true"></div>
+      <${Palette} open=${pal} setOpen=${setPal} setMode=${setMode} /><${TopBtn} />
+      <div className="relative z-10 mx-auto max-w-wrap">
+        <${Nav} mode=${mode} setMode=${setMode} onOpen=${function () { setPal(true); }} />
+        <main>
+          <${Hero} mode=${mode} setMode=${setMode} />
+          <${Marquee} />
+          <${About} /><${Skills} mode=${mode} />
+          <${Interests} /><${Theme} />
+          <${Projects} />
+          <${Contact} />
+        </main>
+        <footer className="foot mt-10 flex flex-wrap items-center justify-between gap-3 text-muted">
+          <span><i className="live mr-2 inline-block h-2 w-2 rounded-full bg-green align-middle" style=${{ boxShadow: '0 0 8px var(--green)' }}></i>SYSTEM ONLINE · Aditya Rastogi · B.Tech ENC · Thapar Institute of Technology · Batch of 2030 · Ctrl/⌘ K to navigate</span>
+          <span className="flex h-1.5 w-[120px] gap-[3px]" aria-hidden="true">
+            ${['blue', 'red', 'yellow', 'green'].map(function (c) { return html`<i key=${c} className="block flex-1 rounded-[3px]" style=${{ background: 'var(--' + c + ')' }}></i>`; })}
+          </span>
+        </footer>
+      </div>
+    </div>`;
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(html`<${App} />`);
+})();
+</script>
+
+</body></html>
