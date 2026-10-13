@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aditya Rastogi Resume</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: one A4-style sheet, labels in a left rail, content on the right. Cool paper, ink navy, one blue accent. */
+:root {
+  --bg: #eef1f5;
+  --sheet: #ffffff;
+  --ink: #14202e;
+  --muted: #566475;
+  --rule: #dce2ea;
+  --accent: #1b5fb0;
+  --chip: #e9eff8;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1218; --sheet: #151c25; --ink: #e8edf3; --muted: #9ba8b7;
+    --rule: #28323e; --accent: #7db0ee; --chip: #1d2835; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1218; --sheet: #151c25; --ink: #e8edf3; --muted: #9ba8b7;
+  --rule: #28323e; --accent: #7db0ee; --chip: #1d2835; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-inline: 16px;
+  padding-block: 32px;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.sheet {
+  max-width: 860px;
+  margin-inline: auto;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: clamp(24px, 5vw, 56px);
+}
+
+header { padding-bottom: 28px; border-bottom: 2px solid var(--ink); }
+h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+.role { margin: 0; font-size: 1.05rem; color: var(--muted); }
+.role strong { color: var(--ink); font-weight: 500; }
+
+.contact {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+.contact li { min-width: 0; overflow-wrap: anywhere; }
+.contact .k { color: var(--muted); margin-right: 6px; }
+
+section {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: 8px 32px;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+section:last-of-type { border-bottom: 0; padding-bottom: 0; }
+h2 {
+  margin: 4px 0 0;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.body { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+p { margin: 0; }
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2px 16px;
+}
+.entry-head h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+.when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.sub { color: var(--muted); font-size: 0.92rem; }
+.entry p + p, .entry .sub + p { margin-top: 4px; }
+
+.facts { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px; }
+.chip {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  background: var(--chip);
+  color: var(--ink);
+  padding: 2px 9px;
+  border-radius: 3px;
+}
+
+.skills { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 8px 16px; margin: 0; }
+.skills dt { color: var(--muted); font-size: 0.9rem; }
+.skills dd { margin: 0; }
+
+.copy {
+  font: inherit; font-family: var(--mono); font-size: 0.72rem;
+  background: none; color: var(--accent); border: 1px solid var(--rule);
+  border-radius: 3px; padding: 0 6px; margin-left: 6px; cursor: pointer;
+}
+.copy:hover { border-color: var(--accent); }
+
+@media (max-width: 640px) {
+  section { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .skills dd { margin-bottom: 10px; }
+}
+@media print {
+  body { background: #fff; padding: 0; }
+  .sheet { border: 0; padding: 0; }
+  .copy { display: none; }
+}
+</style>
+
+</head>
+<body>
+<main class="sheet">
+  <header>
+    <h1>Aditya Rastogi</h1>
+    <p class="role"><strong>B.E. Electronics and Computer Engineering</strong>, TIET Patiala &middot; Class of 2030</p>
+    <ul class="contact">
+      <li><span class="k">email</span><span id="email">mail.adityarastogi@gmail.com</span><button class="copy" type="button" data-copy="email">copy</button></li>
+      <li><span class="k">phone</span><span id="phone">+91 82182 49882</span><button class="copy" type="button" data-copy="phone">copy</button></li>
+      <li><span class="k">location</span>Patiala, Punjab</li>
+      <li><span class="k">github</span><a href="https://github.com/adi-rastogi">github.com/adi-rastogi</a></li>
+      <li><span class="k">linkedin</span><a href="https://www.linkedin.com/in/adi-rastogi">linkedin.com/in/adi-rastogi</a></li>
+      <li><span class="k">portfolio</span><a href="https://adi-rastogi.github.io">adi-rastogi.github.io</a></li>
+    </ul>
+  </header>
+
+  <section>
+    <h2>Objective</h2>
+    <div class="body">
+      <p>First-year Electronics and Computer Engineering student who enjoys turning ideas into working things, from clean interfaces to small web apps. I am applying to GDG to learn from people who build, contribute to real projects, and grow in design, web and app development.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="body">
+      <div class="entry">
+        <div class="entry-head"><h3>Thapar Institute of Engineering and Technology (TIET), Patiala</h3><span class="when">2026 &ndash; 2030 (expected)</span></div>
+        <p class="sub">B.E. in Electronics and Computer Engineering</p>
+        <div class="facts"><span class="chip">JEE Main percentile 90.617</span></div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><h3>K.L. International School, Meerut</h3><span class="when">CBSE</span></div>
+        <div class="facts"><span class="chip">Class XII: 84.6%</span><span class="chip">Class X: 95.6%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="body">
+      <div class="entry">
+        <div class="entry-head"><h3>Project Sentinel</h3><span class="when">Smart India Hackathon 2026</span></div>
+        <p class="sub">Team Innov8 &middot; early-warning system for infrastructure projects</p>
+        <p>Predicts cost overruns, delays and a Low, Medium or High risk score so officers can act before problems grow. I worked on the React frontend dashboard using AI tools, and helped test and present the prototype.</p>
+        <div class="facts"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">scikit-learn</span></div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><h3>Personal Portfolio Website</h3><span class="when"><a href="https://adi-rastogi.github.io">adi-rastogi.github.io</a></span></div>
+        <p>Built from scratch, not from a template, by directing AI coding tools step by step. I chose the content and colour scheme, and deployed it on GitHub Pages.</p>
+        <div class="facts"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub Pages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="body">
+      <dl class="skills">
+        <dt>Programming</dt><dd>C, C++</dd>
+        <dt>Web (foundational)</dt><dd>HTML, CSS, JavaScript</dd>
+        <dt>Tools</dt><dd>Git, GitHub, GitHub Pages</dd>
+        <dt>Interests</dt><dd>UI/UX design, web development, app development</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <div class="body">
+      <div class="entry">
+        <div class="entry-head"><h3>Participant, Smart India Hackathon 2026</h3><span class="when">Internal round, TIET</span></div>
+        <p>Team Innov8, problem statement SIH26103: a web-based integrated project-monitoring platform.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    var text = el.textContent.trim();
+    var done = function () { btn.textContent = 'copied'; setTimeout(function () { btn.textContent = 'copy'; }, 1400); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    };
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>
